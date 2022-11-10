@@ -2,13 +2,13 @@ import { Dog } from "./Animals/Dog";
 import { Animals } from "./Animals/Animals";
 import { str ,num, bool } from "./Interface";
 import { Taime } from "./Taime";
+import { Randomincident } from "./Randomnicity";
 
-class App {
+export class App {
     private _essence!:Animals;//СВОЙСТВА сущьностИ является открытЫМИ но изменить ИХ можно только в классе APP
     private _essenceOjects:Animals[] 
     constructor(listAnimals:Animals[]){
         this._essenceOjects = listAnimals
-        
     }
     private setEssence = (name:str) => {
         this._essence._name = name
@@ -92,6 +92,18 @@ class App {
     public get sentiment () {
         return this._essence._sentiment
     }
+    public set health (choce:num) {
+        app._essence._health = choce
+    }
+    public set satiety (choce:num) {
+        this._essence._satiety = choce
+    }
+    public set sentiment (choce:num) {
+        this._essence._sentiment = choce
+    }
+    public set sex (choce:num) {
+        this._essence.sex(choce)
+    }
 }
 
 
@@ -112,7 +124,7 @@ const getStringInputAndStatistic = () => {
     2  =  Играть
     3  =  Лечить`
 }
-
+const randomIncident:Randomincident = new Randomincident ()
 const listAnimals:Animals[] = [new Dog]
 const app:App = new App(listAnimals)
 let start:bool = true
@@ -121,8 +133,8 @@ enum dictComand {
     play ,
     doctor 
 } 
-
-while (true) {
+let fff = 10
+while (fff) {
     if(start){
         start = app.getAnimals()
     }
@@ -131,15 +143,23 @@ while (true) {
         switch(userComand){
             case dictComand.feed + "":
                 app.feed()
+                randomIncident.intoxication(app,5)
                 break
             case dictComand.play + "":
                 app.play()
+                randomIncident.damage(app,10)
                 break
             case dictComand.doctor + "":
                 app.doctor()
+                randomIncident.defectiveMedicine(app,10)
+                randomIncident.died(app,1)
                 break
+            default:
+                app.sex = 5
         }
         app.age.taim = 1
+
+
     }
     
 }

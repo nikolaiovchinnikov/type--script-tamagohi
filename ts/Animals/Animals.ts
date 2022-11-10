@@ -7,6 +7,7 @@ export abstract class Animals {
     public _satiety!:num
     public _sentiment!:num
     public _health!:num
+    public abstract sex (percent:num):void;
 }
 
 
